@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cultural Competence Flashcards</title>
+<style>
+body{font:16px Arial,sans-serif;background:#f2f6f8;color:#173247;margin:0;padding:24px;display:flex;justify-content:center}
+main{max-width:720px;width:100%}h1{font-size:1.6rem}.muted{color:#526575}
+#card{background:white;border:1px solid #d5e0e7;border-radius:16px;min-height:230px;padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;box-shadow:0 8px 24px #0001}
+#side{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:#587184;margin-bottom:18px}#prompt{font-size:1.3rem;font-weight:bold;line-height:1.4}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}button{padding:12px 18px;border:0;border-radius:9px;background:#164e70;color:white;font-size:1rem;cursor:pointer}.secondary{background:#e2ebf0;color:#173247}
+#track{height:8px;background:#dce5ea;border-radius:8px;overflow:hidden}#bar{height:8px;background:#287b75;width:0}
+</style></head><body><main>
+<h1>Cultural Competence in Prenatal Diagnostic Imaging</h1><p class="muted">Interactive study flashcards · 15 cards</p>
+<p>Tap the card or choose “Reveal answer.” Use Previous and Next to review.</p>
+<section id="card" tabindex="0" role="button"><div id="side">Question · Card 1 of 15</div><div id="prompt">What is cultural competence?</div></section>
+<div class="controls"><button id="flip">Reveal answer</button><button class="secondary" id="prev">Previous</button><button class="secondary" id="next">Next</button></div>
+<div id="track"><div id="bar"></div></div><p id="count" class="muted">Card 1 of 15</p>
+<script>
+const cards=[
+["What is cultural competence?","Knowledge, skills, and attitudes for respectful care across cultures."],
+["What is cultural awareness?","Recognizing different backgrounds, beliefs, values, and experiences."],
+["What is cultural humility?","Staying open to learning; never assuming you know another person's experience."],
+["What is linguistic competence?","Communicating understandably and providing appropriate language assistance."],
+["What are the National CLAS Standards?","HHS guidance promoting culturally and linguistically appropriate health services."],
+["What does LEP mean?","Limited English proficiency."],
+["What is a qualified medical interpreter?","A trained professional who accurately facilitates communication across languages."],
+["Why should children not routinely interpret?","They may omit or misunderstand information and face an inappropriate burden."],
+["What is health literacy?","The ability to find, understand, and use health information."],
+["What is teach-back?","Asking patients to explain key information in their own words to check understanding."],
+["What is patient-centered care?","Care that respects each patient's needs, values, preferences, and participation."],
+["Name three possible barriers to care.","Language differences, transportation difficulties, and financial limitations."],
+["A Spanish-speaking patient seems confused. What should staff do?","Ask the preferred language, arrange a qualified interpreter, explain clearly, and confirm understanding."],
+["How can ultrasound staff show cultural sensitivity?","Respect the patient's comfort, privacy, preferences, and informed participation."],
+["What is the program's main goal?","Improve communication, understanding, comfort, and equitable care for pregnant patients with LEP."]
+];
+let i=0,answer=false;
+const side=document.getElementById('side'),prompt=document.getElementById('prompt'),flip=document.getElementById('flip'),card=document.getElementById('card');
+function draw(){side.textContent=(answer?'Answer':'Question')+' · Card '+(i+1)+' of '+cards.length;prompt.textContent=cards[i][answer?1:0];flip.textContent=answer?'Show question':'Reveal answer';document.getElementById('bar').style.width=((i+1)/cards.length*100)+'%';document.getElementById('count').textContent='Card '+(i+1)+' of '+cards.length;}
+function toggle(){answer=!answer;draw()}
+flip.onclick=toggle;card.onclick=toggle;card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}};
+document.getElementById('prev').onclick=()=>{i=(i+cards.length-1)%cards.length;answer=false;draw()};
+document.getElementById('next').onclick=()=>{i=(i+1)%cards.length;answer=false;draw()};draw();
+</script></main></body></html>
